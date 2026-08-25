@@ -33,16 +33,17 @@
       border: 8px dashed #ffffff;
       width: 100%;
       max-width: 900px;
-      padding: 30px 20px;
+      padding: 35px 20px;
       text-align: center;
       position: relative;
       background-color: #FF5252;
       border-radius: 12px;
     }
+    /* Filete decorativo grande */
     .filete-decorativo {
-      width: 220px;
-      max-width: 70%;
-      margin-bottom: 10px;
+      width: 320px;
+      max-width: 85%;
+      margin-bottom: 12px;
     }
     h1 {
       color: #ffffff;
@@ -53,7 +54,7 @@
       letter-spacing: 1px;
     }
     
-    /* Grid principal fijo */
+    /* Grid principal */
     .content-grid {
       display: flex;
       justify-content: space-between;
@@ -63,7 +64,6 @@
       gap: 15px;
     }
 
-    /* Espacio reservado para el botón NO para evitar desplazar el diseño */
     .btn-placeholder {
       width: 26%;
       min-height: 140px;
@@ -73,7 +73,7 @@
       position: relative;
     }
 
-    /* Fondo de corazón blanco redondeado y centrado por código */
+    /* Fondo de corazón idéntico a la imagen de referencia */
     .heart-wrapper {
       position: relative;
       width: 48%;
@@ -87,19 +87,19 @@
     .heart-wrapper::before {
       content: "";
       position: absolute;
-      width: 340px;
-      height: 310px;
+      width: 360px;
+      height: 320px;
       background-color: #ffffff;
-      /* Silueta de corazón simétrica y más redondeada */
-      clip-path: path('M 170 300 C 70 210 -10 130 10 60 C 25 -5 130 -10 170 65 C 210 -10 315 -5 330 60 C 350 130 270 210 170 300 Z');
+      /* Trazado idéntico a tu imagen de referencia */
+      clip-path: path('M 180 310 C 100 240 10 170 10 95 C 10 25 70 0 120 0 C 150 0 170 20 180 50 C 190 20 210 0 240 0 C 290 0 350 25 350 95 C 350 170 260 240 180 310 Z');
       z-index: -1;
-      transform: scale(1.1);
+      transform: scale(1.12);
     }
     .main-illustration {
       width: 100%;
       height: auto;
       object-fit: contain;
-      margin-top: 5px;
+      margin-top: 10px;
     }
 
     /* Estilos para los botones laterales */
@@ -131,7 +131,6 @@
       transform: scale(1.08);
     }
 
-    /* Botón flotante NO */
     #btnNo {
       transition: top 0.2s ease, left 0.2s ease;
       z-index: 99;
@@ -144,10 +143,9 @@
       align-items: flex-end;
     }
     
-    /* Ocultar elementos desactivados */
     .hidden { display: none !important; }
 
-    /* Formulario de la pantalla 2 */
+    /* Formulario */
     .form-card {
       display: flex;
       flex-direction: column;
@@ -194,7 +192,6 @@
       background-color: #fff0f0;
     }
 
-    /* Adaptación a dispositivos móviles */
     @media (max-width: 650px) {
       .content-grid {
         flex-direction: column;
@@ -223,12 +220,11 @@
     
     <!-- PANTALLA PRINCIPAL -->
     <div id="step1">
-      <img src="filete.png" alt="Decoración" class="filete-decorativo">
+      <img src="filete.png?v=2" alt="Decoración" class="filete-decorativo">
       
       <h1>PERICOTITA DE MI VIDA,<br>¿AÚN QUIERES TENER ESA CITA CONMIGO?</h1>
 
       <div class="content-grid">
-        <!-- CONTENEDOR DEL BOTÓN NO -->
         <div class="btn-placeholder">
           <button id="btnNo" class="btn-option" onmouseover="moverBoton()" onclick="moverBoton()">
             <span>NO, TE ODIO</span>
@@ -236,12 +232,10 @@
           </button>
         </div>
 
-        <!-- ILUSTRACIÓN CENTRAL CON CORAZÓN MÁS REDONDO Y CENTRADO -->
         <div class="heart-wrapper">
           <img src="Amore sin fondo.png" alt="Nosotros" class="main-illustration">
         </div>
 
-        <!-- BOTÓN SÍ -->
         <div class="btn-container-si">
           <button id="btnSi" class="btn-option" onclick="aceptarCita()">
             <span>SI, OBVIO, TE AMO, ERES LO MEJOR DE MI VIDA, CÁSEMONOS</span>
@@ -253,7 +247,7 @@
 
     <!-- PANTALLA DEL SÍ (FORMULARIO) -->
     <div id="step2" class="hidden">
-      <img src="filete.png" alt="Decoración" class="filete-decorativo">
+      <img src="filete.png?v=2" alt="Decoración" class="filete-decorativo">
       <h1>¡SABÍA QUE DIRÍAS QUE SÍ! 💕🎉</h1>
       
       <form class="form-card" action="https://formspree.io/f/TU_ENDPOINT_DE_FORMSPREE" method="POST">
@@ -281,7 +275,7 @@
       btn.style.position = "fixed";
       btn.style.left = `${Math.max(20, x)}px`;
       btn.style.top = `${Math.max(20, y)}px`;
-      btn.style.width = "180px"; // Mantiene tamaño constante al flotar
+      btn.style.width = "180px";
     }
 
     function aceptarCita() {
