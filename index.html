@@ -67,7 +67,6 @@
       position: relative;
     }
 
-    /* Contenedor central con centrado absoluto */
     .heart-wrapper {
       position: relative;
       width: 48%;
@@ -78,7 +77,6 @@
       align-items: center;
     }
 
-    /* SVG del Corazón como fondo exacto */
     .heart-svg {
       position: absolute;
       width: 112%;
@@ -89,7 +87,7 @@
       transform: translate(-50%, -50%);
     }
 
-    /* Ilustración principal alineada perfectamente al centro */
+    /* Ajuste fino de la posición de la ilustración */
     .main-illustration {
       position: relative;
       z-index: 2;
@@ -97,6 +95,7 @@
       height: auto;
       object-fit: contain;
       margin-top: -5px;
+      transform: translateX(-14px);
     }
 
     .btn-option {
@@ -223,7 +222,6 @@
           </button>
         </div>
 
-        <!-- ESTRUCTURA SVG CON CENTRADO ABSOLUTO -->
         <div class="heart-wrapper">
           <svg class="heart-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
             <path d="M 50,90 C 20,65 0,45 0,25 C 0,10 12,0 27,0 C 37,0 45,6 50,15 C 55,6 63,0 73,0 C 88,0 100,10 100,25 C 100,45 80,65 50,90 Z" fill="#ffffff"/>
