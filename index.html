@@ -351,16 +351,16 @@
     <!-- PASO 2: FORMULARIO DE AGENDAMIENTO Y CORREO -->
     <div id="step2" class="hidden">
       <img src="filete.png?v=2" alt="Decoración" class="filete-decorativo">
-      <h1>¡SABÍA QUE DIRÍAS QUE SÍ! 💕🎉</h1>
+      <h1>Eso no es muy inalcanzable de tu parte mi amorcito 💕</h1>
       
       <form id="appointmentForm" class="form-card" onsubmit="enviarCorreo(event)">
         <div class="form-group">
-          <label for="fecha">¿Qué día quieres nuestra cita?</label>
+          <label for="fecha">¿Qué día puedo secuestrarte?</label>
           <input type="date" id="fecha" name="fecha_de_cita" required>
         </div>
 
         <div class="form-group">
-          <label for="email">Escribe tu correo electrónico:</label>
+          <label for="email">Correo electrónico aquí mi ñera:</label>
           <input type="email" id="email" name="email_novia" placeholder="tu-correo@email.com" required>
         </div>
 
@@ -396,10 +396,10 @@
       // Envío mediante EmailJS
       emailjs.sendForm('service_p6vb5bq', 'template_psln82i', event.target)
         .then(function() {
-            alert('¡Confirmación enviada con éxito a tu correo! Te amo muchísimo. ❤️');
-            submitBtn.innerText = "¡Cita Agendada! ✨";
+            alert('Secuestro programado. Ti amu. ❤️');
+            submitBtn.innerText = "¡Cita agendada! ✨";
         }, function(error) {
-            alert('Hubo un problema al enviar el correo, pero nuestra cita sigue en pie. ¡Avisame! 💕');
+            alert('Toy pendejo y no se pudo enviar el correo pero igual tenemos cita 💕');
             console.error('Error EmailJS:', error);
             submitBtn.innerText = "¡Agendar y enviar confirmación! ❤️";
             submitBtn.disabled = false;
