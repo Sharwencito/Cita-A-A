@@ -146,7 +146,7 @@
     }
     .hidden { display: none !important; }
 
-    /* --- ANIMACIONES DE MOVIMIENTO FLUIDO SIN COLISIONES --- */
+    /* --- ANIMACIONES DE MOVIMIENTO FLUIDO Y DESFASADO --- */
 
     @keyframes moveRight {
       0% {
@@ -196,26 +196,22 @@
       border-radius: 50%;
     }
 
-    /* CARRILES SUPERIORES (HACIA LA DERECHA) */
-    .dir-right { animation: moveRight 32s linear infinite; }
-    
-    .img-0  { top: 4%;   --rotacion: rotate(-8deg);  animation-delay: 0s; }
-    .img-1  { top: 18%;  --rotacion: rotate(12deg);  animation-delay: -10s; }
-    .img-2  { top: 32%;  --rotacion: rotate(-10deg); animation-delay: -21s; }
-    .img-3  { top: 4%;   --rotacion: rotate(6deg);   animation-delay: -16s; }
-    .img-4  { top: 18%;  --rotacion: rotate(-14deg); animation-delay: -26s; }
-    .img-5  { top: 32%;  --rotacion: rotate(9deg);   animation-delay: -5s; }
+    /* CARRILES SUPERIORES (HACIA LA DERECHA) - Velocidades desfasadas */
+    .img-0  { top: 4%;   --rotacion: rotate(-8deg);  animation: moveRight 28s linear infinite; animation-delay: 0s; }
+    .img-1  { top: 18%;  --rotacion: rotate(12deg);  animation: moveRight 32s linear infinite; animation-delay: -12s; }
+    .img-2  { top: 32%;  --rotacion: rotate(-10deg); animation: moveRight 36s linear infinite; animation-delay: -24s; }
+    .img-3  { top: 4%;   --rotacion: rotate(6deg);   animation: moveRight 32s linear infinite; animation-delay: -18s; }
+    .img-4  { top: 18%;  --rotacion: rotate(-14deg); animation: moveRight 28s linear infinite; animation-delay: -6s; }
+    .img-5  { top: 32%;  --rotacion: rotate(9deg);   animation: moveRight 34s linear infinite; animation-delay: -30s; }
 
-    /* CARRILES INFERIORES (HACIA LA IZQUIERDA) */
-    .dir-left { animation: moveLeft 34s linear infinite; }
-
-    .img-6  { top: 58%;  --rotacion: rotate(10deg);  animation-delay: 0s; }
-    .img-7  { top: 72%;  --rotacion: rotate(-7deg);  animation-delay: -11s; }
-    .img-8  { top: 86%;  --rotacion: rotate(15deg);  animation-delay: -22s; }
-    .img-9  { top: 58%;  --rotacion: rotate(-12deg); animation-delay: -17s; }
-    .img-10 { top: 72%;  --rotacion: rotate(8deg);   animation-delay: -28s; }
-    .img-11 { top: 86%;  --rotacion: rotate(-6deg);  animation-delay: -6s; }
-    .img-12 { top: 72%;  --rotacion: rotate(11deg);  animation-delay: -16s; }
+    /* CARRILES INFERIORES (HACIA LA IZQUIERDA) - Velocidades desfasadas */
+    .img-6  { top: 56%;  --rotacion: rotate(10deg);  animation: moveLeft 30s linear infinite; animation-delay: -3s; }
+    .img-7  { top: 70%;  --rotacion: rotate(-7deg);  animation: moveLeft 35s linear infinite; animation-delay: -15s; }
+    .img-8  { top: 84%;  --rotacion: rotate(15deg);  animation: moveLeft 28s linear infinite; animation-delay: -27s; }
+    .img-9  { top: 56%;  --rotacion: rotate(-12deg); animation: moveLeft 33s linear infinite; animation-delay: -21s; }
+    .img-10 { top: 70%;  --rotacion: rotate(8deg);   animation: moveLeft 29s linear infinite; animation-delay: -9s; }
+    .img-11 { top: 84%;  --rotacion: rotate(-6deg);  animation: moveLeft 36s linear infinite; animation-delay: -33s; }
+    .img-12 { top: 70%;  --rotacion: rotate(11deg);  animation: moveLeft 31s linear infinite; animation-delay: -24s; }
 
     /* Formulario */
     .form-card {
@@ -295,21 +291,21 @@
 </head>
 <body>
 
-  <!-- ELEMENTOS FLOTANTES DISTRIBUIDOS POR CARRILES INDEPENDIENTES -->
-  <div class="floating-card dir-right img-0"><img src="amore.png" alt="Ilustración 0"></div>
-  <div class="floating-card dir-right img-1"><img src="amore1.png" alt="Ilustración 1"></div>
-  <div class="floating-card dir-right img-2"><img src="amore2.png" alt="Ilustración 2"></div>
-  <div class="floating-card dir-right img-3"><img src="amore3.png" alt="Ilustración 3"></div>
-  <div class="floating-card dir-right img-4"><img src="amore4.png" alt="Ilustración 4"></div>
-  <div class="floating-card dir-right img-5"><img src="amore5.png" alt="Ilustración 5"></div>
+  <!-- ELEMENTOS FLOTANTES CON DESPLAZAMIENTOS INDEPENDIENTES -->
+  <div class="floating-card img-0"><img src="amore.png" alt="Ilustración 0"></div>
+  <div class="floating-card img-1"><img src="amore1.png" alt="Ilustración 1"></div>
+  <div class="floating-card img-2"><img src="amore2.png" alt="Ilustración 2"></div>
+  <div class="floating-card img-3"><img src="amore3.png" alt="Ilustración 3"></div>
+  <div class="floating-card img-4"><img src="amore4.png" alt="Ilustración 4"></div>
+  <div class="floating-card img-5"><img src="amore5.png" alt="Ilustración 5"></div>
 
-  <div class="floating-card dir-left img-6"><img src="amore6.png" alt="Ilustración 6"></div>
-  <div class="floating-card dir-left img-7"><img src="amore7.png" alt="Ilustración 7"></div>
-  <div class="floating-card dir-left img-8"><img src="amore8.png" alt="Ilustración 8"></div>
-  <div class="floating-card dir-left img-9"><img src="amore9.png" alt="Ilustración 9"></div>
-  <div class="floating-card dir-left img-10"><img src="amore10.png" alt="Ilustración 10"></div>
-  <div class="floating-card dir-left img-11"><img src="amore11.png" alt="Ilustración 11"></div>
-  <div class="floating-card dir-left img-12"><img src="amore12.png" alt="Ilustración 12"></div>
+  <div class="floating-card img-6"><img src="amore6.png" alt="Ilustración 6"></div>
+  <div class="floating-card img-7"><img src="amore7.png" alt="Ilustración 7"></div>
+  <div class="floating-card img-8"><img src="amore8.png" alt="Ilustración 8"></div>
+  <div class="floating-card img-9"><img src="amore9.png" alt="Ilustración 9"></div>
+  <div class="floating-card img-10"><img src="amore10.png" alt="Ilustración 10"></div>
+  <div class="floating-card img-11"><img src="amore11.png" alt="Ilustración 11"></div>
+  <div class="floating-card img-12"><img src="amore12.png" alt="Ilustración 12"></div>
 
   <div class="container">
     
