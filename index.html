@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>¿Aún quieres tener esa cita conmigo?</title>
   
+  <!-- SDK de EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      // Inicialización con tu Public Key
+      emailjs.init("Cd1J1n8k8wKfJUiog");
+    })();
+  </script>
+
   <style>
     @font-face {
       font-family: 'Scripter';
@@ -146,7 +155,7 @@
     }
     .hidden { display: none !important; }
 
-    /* --- ANIMACIONES DE MOVIMIENTO FLUIDO Y DESFASADO --- */
+    /* --- ANIMACIONES DEL CARRUSEL DE MEDALLONES FLOTANTES --- */
 
     @keyframes moveRight {
       0% {
@@ -196,7 +205,7 @@
       border-radius: 50%;
     }
 
-    /* CARRILES SUPERIORES (HACIA LA DERECHA) - Velocidades desfasadas */
+    /* CARRILES SUPERIORES (HACIA LA DERECHA) - Tiempos desfasados */
     .img-0  { top: 4%;   --rotacion: rotate(-8deg);  animation: moveRight 28s linear infinite; animation-delay: 0s; }
     .img-1  { top: 18%;  --rotacion: rotate(12deg);  animation: moveRight 32s linear infinite; animation-delay: -12s; }
     .img-2  { top: 32%;  --rotacion: rotate(-10deg); animation: moveRight 36s linear infinite; animation-delay: -24s; }
@@ -204,7 +213,7 @@
     .img-4  { top: 18%;  --rotacion: rotate(-14deg); animation: moveRight 28s linear infinite; animation-delay: -6s; }
     .img-5  { top: 32%;  --rotacion: rotate(9deg);   animation: moveRight 34s linear infinite; animation-delay: -30s; }
 
-    /* CARRILES INFERIORES (HACIA LA IZQUIERDA) - Velocidades desfasadas */
+    /* CARRILES INFERIORES (HACIA LA IZQUIERDA) - Tiempos desfasados */
     .img-6  { top: 56%;  --rotacion: rotate(10deg);  animation: moveLeft 30s linear infinite; animation-delay: -3s; }
     .img-7  { top: 70%;  --rotacion: rotate(-7deg);  animation: moveLeft 35s linear infinite; animation-delay: -15s; }
     .img-8  { top: 84%;  --rotacion: rotate(15deg);  animation: moveLeft 28s linear infinite; animation-delay: -27s; }
@@ -291,7 +300,7 @@
 </head>
 <body>
 
-  <!-- ELEMENTOS FLOTANTES CON DESPLAZAMIENTOS INDEPENDIENTES -->
+  <!-- ELEMENTOS FLOTANTES DETRÁS DEL MARCO -->
   <div class="floating-card img-0"><img src="amore.png" alt="Ilustración 0"></div>
   <div class="floating-card img-1"><img src="amore1.png" alt="Ilustración 1"></div>
   <div class="floating-card img-2"><img src="amore2.png" alt="Ilustración 2"></div>
@@ -309,6 +318,7 @@
 
   <div class="container">
     
+    <!-- PASO 1: INVITACIÓN Y RESPUESTA -->
     <div id="step1">
       <img src="filete.png?v=2" alt="Decoración" class="filete-decorativo">
       
@@ -338,11 +348,12 @@
       </div>
     </div>
 
+    <!-- PASO 2: FORMULARIO DE AGENDAMIENTO Y CORREO -->
     <div id="step2" class="hidden">
       <img src="filete.png?v=2" alt="Decoración" class="filete-decorativo">
       <h1>¡SABÍA QUE DIRÍAS QUE SÍ! 💕🎉</h1>
       
-      <form class="form-card" action="https://formspree.io/f/TU_ENDPOINT_DE_FORMSPREE" method="POST">
+      <form id="appointmentForm" class="form-card" onsubmit="enviarCorreo(event)">
         <div class="form-group">
           <label for="fecha">¿Qué día quieres nuestra cita?</label>
           <input type="date" id="fecha" name="fecha_de_cita" required>
@@ -353,7 +364,7 @@
           <input type="email" id="email" name="email_novia" placeholder="tu-correo@email.com" required>
         </div>
 
-        <button type="submit" class="submit-btn">¡Agendar y enviar confirmación! ❤️</button>
+        <button type="submit" id="btnSubmit" class="submit-btn">¡Agendar y enviar confirmación! ❤️</button>
       </form>
     </div>
 
@@ -373,6 +384,26 @@
     function aceptarCita() {
       document.getElementById("step1").classList.add("hidden");
       document.getElementById("step2").classList.remove("hidden");
+    }
+
+    function enviarCorreo(event) {
+      event.preventDefault();
+      
+      const submitBtn = document.getElementById("btnSubmit");
+      submitBtn.innerText = "Enviando confirmación... 💌";
+      submitBtn.disabled = true;
+
+      // Envío mediante EmailJS
+      emailjs.sendForm('service_p6vb5bq', 'template_psln82i', event.target)
+        .then(function() {
+            alert('¡Confirmación enviada con éxito a tu correo! Te amo muchísimo. ❤️');
+            submitBtn.innerText = "¡Cita Agendada! ✨";
+        }, function(error) {
+            alert('Hubo un problema al enviar el correo, pero nuestra cita sigue en pie. ¡Avisame! 💕');
+            console.error('Error EmailJS:', error);
+            submitBtn.innerText = "¡Agendar y enviar confirmación! ❤️";
+            submitBtn.disabled = false;
+        });
     }
   </script>
 
