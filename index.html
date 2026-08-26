@@ -18,7 +18,6 @@
       font-family: 'Scripter', cursive, sans-serif;
     }
 
-    /* Fondo general con el patrón sutil fuera del marco */
     body {
       background-color: #FF5252;
       background-image: url('patron-rosas.png');
@@ -31,11 +30,10 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      overflow: hidden; /* Oculta las imágenes al salir de los bordes */
+      overflow: hidden;
       position: relative;
     }
 
-    /* Contenedor principal por encima de las imágenes flotantes */
     .container {
       border: 8px dashed #ffffff;
       width: 100%;
@@ -45,7 +43,7 @@
       position: relative;
       background-color: #FF5252;
       border-radius: 12px;
-      z-index: 10; /* Se mantiene por encima de la decoración flotante */
+      z-index: 10;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
 
@@ -148,36 +146,50 @@
     }
     .hidden { display: none !important; }
 
-    /* --- CARRUSEL HORIZONTAL CONTINUO DETRÁS DEL MARCO --- */
-    
-    /* Animación de desplazamiento continuo de izquierda a derecha */
-    @keyframes carouselMove {
+    /* --- ANIMACIONES DE MOVIMIENTO FLUIDO Y ERRÁTICO --- */
+
+    /* Movimiento de izquierda a derecha con flotación */
+    @keyframes moveRight {
       0% {
-        transform: translateX(-150px) var(--rotacion);
+        transform: translateX(-160px) translateY(0px) var(--rotacion);
+      }
+      50% {
+        transform: translateX(calc(50vw)) translateY(-18px) var(--rotacion);
       }
       100% {
-        transform: translateX(calc(100vw + 150px)) var(--rotacion);
+        transform: translateX(calc(100vw + 160px)) translateY(0px) var(--rotacion);
       }
     }
 
-    /* Marco circular estilo medalla/sticker */
+    /* Movimiento de derecha a izquierda con flotación */
+    @keyframes moveLeft {
+      0% {
+        transform: translateX(calc(100vw + 160px)) translateY(0px) var(--rotacion);
+      }
+      50% {
+        transform: translateX(calc(50vw)) translateY(18px) var(--rotacion);
+      }
+      100% {
+        transform: translateX(-160px) translateY(0px) var(--rotacion);
+      }
+    }
+
+    /* Estilo del medalla/sticker circular */
     .floating-card {
       position: absolute;
-      z-index: 1; /* Detrás del contenedor principal */
-      width: 115px;
-      height: 115px;
+      z-index: 1;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       background-color: #ffffff;
       border: 4px solid #ffffff;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-      padding: 5px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.18);
+      padding: 4px;
       display: flex;
       justify-content: center;
       align-items: center;
       pointer-events: none;
       left: 0;
-      /* Movimiento fluido de 28 segundos por ciclo */
-      animation: carouselMove 28s linear infinite;
     }
 
     .floating-card img {
@@ -187,24 +199,28 @@
       border-radius: 50%;
     }
 
-    /* FILA SUPERIOR (Imágenes distribuidas con retraso temporal constante) */
-    .row-top { top: 25px; }
-    .img-0  { --rotacion: rotate(-8deg);  animation-delay: 0s; }
-    .img-1  { --rotacion: rotate(6deg);   animation-delay: 4.5s; }
-    .img-2  { --rotacion: rotate(-10deg); animation-delay: 9s; }
-    .img-3  { --rotacion: rotate(8deg);   animation-delay: 13.5s; }
-    .img-4  { --rotacion: rotate(-5deg);  animation-delay: 18s; }
-    .img-5  { --rotacion: rotate(12deg);  animation-delay: 22.5s; }
+    /* DISTRIBUCIÓN ERRÁTICA EN ALTURAS Y TIEMPOS NEGATIVOS (SIN PAUSAS AL INICIO) */
+    
+    /* Hacia la Derecha */
+    .dir-right { animation: moveRight 30s linear infinite; }
+    
+    .img-0  { top: 4%;   --rotacion: rotate(-8deg);  animation-delay: -2s; }
+    .img-1  { top: 22%;  --rotacion: rotate(12deg);  animation-delay: -14s; }
+    .img-2  { top: 68%;  --rotacion: rotate(-10deg); animation-delay: -7s; }
+    .img-3  { top: 85%;  --rotacion: rotate(6deg);   animation-delay: -22s; }
+    .img-4  { top: 42%;  --rotacion: rotate(-14deg); animation-delay: -11s; }
+    .img-5  { top: 12%;  --rotacion: rotate(9deg);   animation-delay: -26s; }
 
-    /* FILA INFERIOR (Imágenes intercaladas) */
-    .row-bottom { bottom: 25px; }
-    .img-6  { --rotacion: rotate(10deg);  animation-delay: 2s; }
-    .img-7  { --rotacion: rotate(-7deg);  animation-delay: 6.5s; }
-    .img-8  { --rotacion: rotate(9deg);   animation-delay: 11s; }
-    .img-9  { --rotacion: rotate(-12deg); animation-delay: 15.5s; }
-    .img-10 { --rotacion: rotate(6deg);   animation-delay: 20s; }
-    .img-11 { --rotacion: rotate(-8deg);  animation-delay: 24.5s; }
-    .img-12 { --rotacion: rotate(11deg);  animation-delay: 26.5s; }
+    /* Hacia la Izquierda */
+    .dir-left { animation: moveLeft 32s linear infinite; }
+
+    .img-6  { top: 8%;   --rotacion: rotate(10deg);  animation-delay: -5s; }
+    .img-7  { top: 30%;  --rotacion: rotate(-7deg);  animation-delay: -18s; }
+    .img-8  { top: 52%;  --rotacion: rotate(15deg);  animation-delay: -2s; }
+    .img-9  { top: 76%;  --rotacion: rotate(-12deg); animation-delay: -23s; }
+    .img-10 { top: 90%;  --rotacion: rotate(8deg);   animation-delay: -10s; }
+    .img-11 { top: 16%;  --rotacion: rotate(-6deg);  animation-delay: -28s; }
+    .img-12 { top: 60%;  --rotacion: rotate(11deg);  animation-delay: -15s; }
 
     /* Formulario */
     .form-card {
@@ -255,8 +271,8 @@
 
     @media (max-width: 1100px) {
       .floating-card {
-        width: 85px;
-        height: 85px;
+        width: 80px;
+        height: 80px;
       }
     }
 
@@ -284,21 +300,21 @@
 </head>
 <body>
 
-  <!-- CARRUSEL DE 13 MEDALLONES CIRCULARES EN 2 FILAS -->
-  <div class="floating-card row-top img-0"><img src="amore.png" alt="Ilustración 0"></div>
-  <div class="floating-card row-top img-1"><img src="amore1.png" alt="Ilustración 1"></div>
-  <div class="floating-card row-top img-2"><img src="amore2.png" alt="Ilustración 2"></div>
-  <div class="floating-card row-top img-3"><img src="amore3.png" alt="Ilustración 3"></div>
-  <div class="floating-card row-top img-4"><img src="amore4.png" alt="Ilustración 4"></div>
-  <div class="floating-card row-top img-5"><img src="amore5.png" alt="Ilustración 5"></div>
+  <!-- ELEMENTOS FLOTANTES CON DIRECCIONES Y ALTURAS VARIADAS -->
+  <div class="floating-card dir-right img-0"><img src="amore.png" alt="Ilustración 0"></div>
+  <div class="floating-card dir-right img-1"><img src="amore1.png" alt="Ilustración 1"></div>
+  <div class="floating-card dir-right img-2"><img src="amore2.png" alt="Ilustración 2"></div>
+  <div class="floating-card dir-right img-3"><img src="amore3.png" alt="Ilustración 3"></div>
+  <div class="floating-card dir-right img-4"><img src="amore4.png" alt="Ilustración 4"></div>
+  <div class="floating-card dir-right img-5"><img src="amore5.png" alt="Ilustración 5"></div>
 
-  <div class="floating-card row-bottom img-6"><img src="amore6.png" alt="Ilustración 6"></div>
-  <div class="floating-card row-bottom img-7"><img src="amore7.png" alt="Ilustración 7"></div>
-  <div class="floating-card row-bottom img-8"><img src="amore8.png" alt="Ilustración 8"></div>
-  <div class="floating-card row-bottom img-9"><img src="amore9.png" alt="Ilustración 9"></div>
-  <div class="floating-card row-bottom img-10"><img src="amore10.png" alt="Ilustración 10"></div>
-  <div class="floating-card row-bottom img-11"><img src="amore11.png" alt="Ilustración 11"></div>
-  <div class="floating-card row-bottom img-12"><img src="amore12.png" alt="Ilustración 12"></div>
+  <div class="floating-card dir-left img-6"><img src="amore6.png" alt="Ilustración 6"></div>
+  <div class="floating-card dir-left img-7"><img src="amore7.png" alt="Ilustración 7"></div>
+  <div class="floating-card dir-left img-8"><img src="amore8.png" alt="Ilustración 8"></div>
+  <div class="floating-card dir-left img-9"><img src="amore9.png" alt="Ilustración 9"></div>
+  <div class="floating-card dir-left img-10"><img src="amore10.png" alt="Ilustración 10"></div>
+  <div class="floating-card dir-left img-11"><img src="amore11.png" alt="Ilustración 11"></div>
+  <div class="floating-card dir-left img-12"><img src="amore12.png" alt="Ilustración 12"></div>
 
   <div class="container">
     
