@@ -393,8 +393,21 @@
       submitBtn.innerText = "Enviando confirmación... 💌";
       submitBtn.disabled = true;
 
-      // Envío mediante EmailJS
-      emailjs.sendForm('service_p6vb5bq', 'template_psln82i', event.target)
+      // Obtener la fecha del input (YYYY-MM-DD) y formatear a DD-MM-YYYY
+      const fechaRaw = document.getElementById("fecha").value;
+      const [year, month, day] = fechaRaw.split("-");
+      const fechaFormateada = `${day}-${month}-${year}`;
+
+      const emailNovia = document.getElementById("email").value;
+
+      // Parámetros para EmailJS con la fecha ya formateada
+      const templateParams = {
+        fecha_de_cita: fechaFormateada,
+        email_novia: emailNovia
+      };
+
+      // Envío de parámetros formateados mediante EmailJS
+      emailjs.send('service_p6vb5bq', 'template_psln82i', templateParams)
         .then(function() {
             alert('Secuestro programado. Ti amu. ❤️');
             submitBtn.innerText = "¡Cita agendada! ✨";
