@@ -17,16 +17,25 @@
       box-sizing: border-box;
       font-family: 'Scripter', cursive, sans-serif;
     }
+
+    /* Fondo general con el patrón sutil fuera del marco */
     body {
       background-color: #FF5252;
+      background-image: url('patron-rosas.png');
+      background-repeat: repeat;
+      background-size: 250px 250px;
+      background-blend-mode: soft-light;
       margin: 0;
-      padding: 20px;
+      padding: 40px 20px;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
     }
+
+    /* Contenedor principal por encima de las imágenes flotantes */
     .container {
       border: 8px dashed #ffffff;
       width: 100%;
@@ -36,7 +45,10 @@
       position: relative;
       background-color: #FF5252;
       border-radius: 12px;
+      z-index: 10; /* Se mantiene por encima de la decoración flotante */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
+
     .filete-decorativo {
       width: 320px;
       max-width: 85%;
@@ -87,7 +99,6 @@
       transform: translate(-50%, -50%);
     }
 
-    /* Ajuste fino de la posición de la ilustración */
     .main-illustration {
       position: relative;
       z-index: 2;
@@ -137,6 +148,51 @@
     }
     .hidden { display: none !important; }
 
+    /* Animación de flotación suave infinita */
+    @keyframes floatAnimation {
+      0% {
+        transform: translateY(0px) var(--rotacion);
+      }
+      50% {
+        transform: translateY(-15px) var(--rotacion);
+      }
+      100% {
+        transform: translateY(0px) var(--rotacion);
+      }
+    }
+
+    /* Estilos base para las 13 ilustraciones flotantes */
+    .floating-img {
+      position: absolute;
+      z-index: 1; /* Al fondo, detrás de la caja principal */
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      animation: floatAnimation 4s ease-in-out infinite;
+      filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.15));
+      pointer-events: none; /* Evita que estorben los clics */
+    }
+
+    /* Distribución periférica de las 13 imágenes alrededor de la pantalla */
+    .img-0  { top: 4%;   left: 2%;   --rotacion: rotate(-12deg); animation-delay: 0s; }
+    .img-1  { top: 2%;   left: 22%;  --rotacion: rotate(8deg);   animation-delay: 0.5s; }
+    .img-2  { top: 3%;   right: 22%; --rotacion: rotate(-6deg);  animation-delay: 1s; }
+    .img-3  { top: 4%;   right: 2%;  --rotacion: rotate(14deg);  animation-delay: 1.5s; }
+    
+    .img-4  { top: 28%;  left: 1%;   --rotacion: rotate(10deg);  animation-delay: 0.3s; }
+    .img-5  { top: 28%;  right: 1%;  --rotacion: rotate(-8deg);  animation-delay: 1.2s; }
+    
+    .img-6  { top: 55%;  left: 1.5%; --rotacion: rotate(-14deg); animation-delay: 0.7s; }
+    .img-7  { top: 55%;  right: 1.5%;--rotacion: rotate(12deg);  animation-delay: 1.8s; }
+    
+    .img-8  { bottom: 20%; left: 2%;  --rotacion: rotate(6deg);   animation-delay: 0.2s; }
+    .img-9  { bottom: 20%; right: 2%; --rotacion: rotate(-10deg); animation-delay: 1.4s; }
+    
+    .img-10 { bottom: 2%;  left: 5%;  --rotacion: rotate(-8deg);  animation-delay: 0.9s; }
+    .img-11 { bottom: 2%;  left: 42%; --rotacion: rotate(5deg);   animation-delay: 1.6s; }
+    .img-12 { bottom: 2%;  right: 5%; --rotacion: rotate(11deg);  animation-delay: 0.4s; }
+
+    /* Formulario */
     .form-card {
       display: flex;
       flex-direction: column;
@@ -183,6 +239,13 @@
       background-color: #fff0f0;
     }
 
+    @media (max-width: 1100px) {
+      .floating-img {
+        width: 65px;
+        height: 65px;
+      }
+    }
+
     @media (max-width: 650px) {
       .content-grid {
         flex-direction: column;
@@ -206,6 +269,21 @@
   </style>
 </head>
 <body>
+
+  <!-- 13 ILUSTRACIONES FLOTANTES ALREDEDOR DEL FONDO -->
+  <img src="amore.png"   class="floating-img img-0"  alt="Ilustración 0">
+  <img src="amore1.png"  class="floating-img img-1"  alt="Ilustración 1">
+  <img src="amore2.png"  class="floating-img img-2"  alt="Ilustración 2">
+  <img src="amore3.png"  class="floating-img img-3"  alt="Ilustración 3">
+  <img src="amore4.png"  class="floating-img img-4"  alt="Ilustración 4">
+  <img src="amore5.png"  class="floating-img img-5"  alt="Ilustración 5">
+  <img src="amore6.png"  class="floating-img img-6"  alt="Ilustración 6">
+  <img src="amore7.png"  class="floating-img img-7"  alt="Ilustración 7">
+  <img src="amore8.png"  class="floating-img img-8"  alt="Ilustración 8">
+  <img src="amore9.png"  class="floating-img img-9"  alt="Ilustración 9">
+  <img src="amore10.png" class="floating-img img-10" alt="Ilustración 10">
+  <img src="amore11.png" class="floating-img img-11" alt="Ilustración 11">
+  <img src="amore12.png" class="floating-img img-12" alt="Ilustración 12">
 
   <div class="container">
     
