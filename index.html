@@ -364,7 +364,7 @@
           <input type="email" id="email" name="email_novia" placeholder="tu-correo@email.com" required>
         </div>
 
-        <button type="submit" id="btnSubmit" class="submit-btn">¡Agendar y enviar confirmación! ❤️</button>
+        <button type="submit" id="btnSubmit" class="submit-btn">¡Obvio que quiero cita ❤️!</button>
       </form>
     </div>
 
@@ -410,11 +410,11 @@
       emailjs.send('service_p6vb5bq', 'template_psln82i', templateParams)
         .then(function() {
             alert('Secuestro programado. Ti amu. ❤️');
-            submitBtn.innerText = "¡Cita agendada! ✨";
+            submitBtn.innerText = "¡Habemus cita! ❤️";
         }, function(error) {
             alert('Toy pendejo y no se pudo enviar el correo pero igual tenemos cita 💕');
             console.error('Error EmailJS:', error);
-            submitBtn.innerText = "¡Agendar y enviar confirmación! ❤️";
+            submitBtn.innerText = "¡Obvio que quiero cita ❤️!";
             submitBtn.disabled = false;
         });
     }
